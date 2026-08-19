@@ -1,0 +1,8 @@
+# dsh-balance bundle patch: inserts the plugin into a profile's loader tree.
+# Used when the package is installed as a profile bundle (`dsh plugin add` /
+# the DSH plugin market). The live desktop install instead references the
+# package through the profile's own cordis.patch.yml row — the two must not
+# both be active at once (duplicate entry id "balance" is a boot failure).
+- insert:
+    - id: balance
+      name: 'dsh-balance'
