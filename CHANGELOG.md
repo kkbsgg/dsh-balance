@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.2] — 2026-08-19
+
+- Fix: the balance text no longer stays visible when the selected model is
+  empty or not a DeepSeek official model. The balance is the DeepSeek account
+  balance, so it now only renders while a `deepseek-official` model with a
+  non-empty id is selected — switching to an empty or other-provider model
+  hides it instead of retaining the stale value.
+
 ## [0.1.1] — 2026-08-19
 
 - First release published automatically through the npm trusted-publishing

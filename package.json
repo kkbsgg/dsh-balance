@@ -1,6 +1,6 @@
 {
   "name": "@kkbsgg/dsh-balance",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shows the DeepSeek account balance next to the composer model seat once a model and reasoning effort are selected.",
   "type": "module",
   "main": "lib/index.js",
