@@ -23,5 +23,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # OIDC trusted publishing requires npm >= 11.5.1; the node 22 runner
+      # bundles npm 10.x, which fails with ENEEDAUTH (no OIDC exchange).
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
       - name: Publish to npm
         run: npm publish --provenance --access public
