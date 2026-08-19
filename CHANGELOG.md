@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.1] — 2026-08-19
+
+- First release published automatically through the npm trusted-publishing
+  (OIDC) pipeline on tag push — no manual 2FA at publish time.
+- No functional changes.
+
 ## [0.1.0] — 2026-08-19
 
 - Initial release: DeepSeek account balance display next to the composer
