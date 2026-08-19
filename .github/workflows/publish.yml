@@ -28,5 +28,13 @@ jobs:
       - name: Upgrade npm
         run: npm install -g npm@latest
 
+      - name: Debug OIDC environment
+        run: |
+          node -v
+          npm -v
+          echo "ID_TOKEN_URL set: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
+          echo "ID_TOKEN_TOKEN set: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+yes}"
+          node -e "const fs=require('fs');const p=process.env.HOME+'/.npmrc';console.log('npmrc:',fs.existsSync(p)?fs.readFileSync(p,'utf8').replace(/(_authToken=).*/g,'$1<redacted>'):'none')"
+
       - name: Publish to npm
         run: npm publish --provenance --access public
