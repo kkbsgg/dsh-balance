@@ -25,9 +25,19 @@ is selected for the active conversation.
 
 ## Installation
 
-The plugin ships as a package named `dsh-balance`. With it resolvable from the
-profile's `node_modules` (see below), add one loader row to the profile patch
-(`$DSH_HOME/profiles/<profile>/cordis.patch.yml`):
+### From source (any DSH profile)
+
+The package declares a `dsh.bundle` manifest, so it installs through the
+standard plugin command once the repo is resolvable:
+
+```sh
+dsh plugin add kkbsgg/dsh-balance
+```
+
+### Manual (packaged DSH Desktop)
+
+With the package resolvable from the profile's `node_modules`, add one loader
+row to the profile patch (`$DSH_HOME/profiles/<profile>/cordis.patch.yml`):
 
 ```yaml
 - insert:
@@ -50,9 +60,13 @@ junction, so the profile loader resolves it exactly like the in-box plugins.
 
 ```
 dsh-balance/
-├── lib/index.js       # host half (Cordis plugin + balance route)
-├── client/client.js   # client half (web client plugin bundle)
-├── package.json       # dsh.client manifest
+├── lib/index.js           # host half (Cordis plugin + balance route)
+├── client/client.js       # client half (web client plugin bundle)
+├── test/smoke.test.mjs    # host-half smoke test (run: node test/smoke.test.mjs)
+├── cordis.patch.yml       # dsh.bundle patch (market installability)
+├── package.json           # dsh.bundle + dsh.client manifest
+├── CHANGELOG.md
+├── .editorconfig
 └── README.md
 ```
 
