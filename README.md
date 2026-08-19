@@ -1,5 +1,9 @@
 # dsh-balance
 
+![CI](https://github.com/kkbsgg/dsh-balance/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Version](https://img.shields.io/badge/version-0.1.0-blueviolet)
+
 DeepSeek Harness plugin that displays the DeepSeek account balance as a small
 text next to the composer's model seat, once a model (and its reasoning effort)
 is selected for the active conversation.
