@@ -68,13 +68,13 @@ window.__ModuleLoader__.load({
 		* model-selection store (undefined when ui-model-selection is absent or
 		* the session cannot resolve one).
 		*
-		* The balance is the DeepSeek ACCOUNT balance (the host route resolves
-		* the `llm-deepseek` credential), so it is only shown while the selected
-		* model belongs to the DeepSeek official provider and has a non-empty
-		* model id. An empty selection — or a model from any other provider —
-		* hides the text instead of retaining a stale DeepSeek balance.
+		* The host route resolves the selected provider's own credential and
+		* queries that provider's balance, so the seat works for every model: the
+		* DeepSeek official route, custom providers from the Models page, and any
+		* pi-ai route. It renders only while a model with a non-empty id is
+		* selected — an empty selection hides the text instead of retaining a
+		* stale balance.
 		*/
-		const DEEPSEEK_PROVIDER = "deepseek-official";
 		function BalanceText({ sessionId, directory }) {
 			const modelState = react.useSyncExternalStore(directory === void 0 ? noopSubscribe : directory.subscribe, directory === void 0 ? emptySnapshot : directory.getSnapshot);
 			const current = modelState === null || modelState === void 0 ? void 0 : modelState.current;
@@ -83,18 +83,19 @@ window.__ModuleLoader__.load({
 				&& modelState.status === "ready"
 				&& current !== null
 				&& current !== void 0
-				&& typeof current.provider === "string"
-				&& current.provider === DEEPSEEK_PROVIDER
 				&& typeof current.model === "string"
 				&& current.model.length > 0;
+			const providerRef = react.useRef("");
+			providerRef.current = typeof current?.provider === "string" ? current.provider : "";
 			const [data, setData] = react.useState(null);
 			const [error, setError] = react.useState(null);
 			const [loading, setLoading] = react.useState(false);
 			const seq = react.useRef(0);
 			const refresh = react.useCallback(() => {
+				const provider = providerRef.current;
 				const id = ++seq.current;
 				setLoading(true);
-				fetch(BALANCE_ENDPOINT, { cache: "no-store" }).then((response) => response.json()).then((body) => {
+				fetch(`${BALANCE_ENDPOINT}?provider=${encodeURIComponent(provider)}`, { cache: "no-store" }).then((response) => response.json()).then((body) => {
 					if (seq.current !== id) return;
 					setData(body);
 					setError(null);

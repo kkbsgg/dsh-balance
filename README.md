@@ -2,26 +2,29 @@
 
 ![CI](https://github.com/kkbsgg/dsh-balance/actions/workflows/ci.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Version](https://img.shields.io/badge/version-0.1.0-blueviolet)
+![Version](https://img.shields.io/badge/version-0.2.0-blueviolet)
 
-DeepSeek Harness plugin that displays the DeepSeek account balance as a small
-text next to the composer's model seat, once a model (and its reasoning effort)
-is selected for the active conversation.
+DeepSeek Harness plugin that displays the **selected model provider's account
+balance** as a small text next to the composer's model seat, once a model (and
+its reasoning effort) is selected for the active conversation.
 
 ## How it works
 
 - **Host half** (`lib/index.js`, a Cordis plugin) mounts one loopback HTTP
-  route — `GET /dsh-balance/balance` — on the webserver. The route resolves the
-  DeepSeek API key through the standard credentials service using the same
-  reference the `llm-deepseek` adapter uses (`llm-deepseek.apiKeyEnv`,
-  default `DEEPSEEK_API_KEY`), calls `GET <baseURL>/user/balance`, and returns
-  a small normalized JSON document. The key never crosses the wire boundary.
+  route — `GET /dsh-balance/balance?provider=<route>` — on the webserver. The
+  route resolves the **selected provider's own** API key through the standard
+  credentials service (the `llm-deepseek` section for the DeepSeek official
+  route, the `llm-pi-ai` providers table for custom/other routes), then probes
+  the provider's balance: DeepSeek-style `GET <baseURL>/user/balance` first,
+  falling back to the OpenAI-style `GET <baseURL>/v1/dashboard/billing/credit_grants`.
+  The key never crosses the wire boundary.
 - **Client half** (`client/client.js`, a web client plugin) registers a seat
   into the `conversation.input.right` slot (immediately beside the model
   selector). It subscribes to the active session's model-selection directory
-  (`modelDirectories`) and only renders after a model + reasoning effort is
-  selected, then polls the host route every 60s. Clicking the text refreshes
-  immediately.
+  (`modelDirectories`), passes the selected provider to the route, and only
+  renders after a model with a non-empty id is selected — an empty selection
+  hides the text instead of retaining a stale balance. Polls every 60s;
+  clicking the text refreshes immediately.
 
 ## Installation
 

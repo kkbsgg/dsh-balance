@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.2.0] — 2026-08-19
+
+- Support every model provider, not just DeepSeek: the balance route now
+  resolves the selected provider's own credential and base URL (the
+  `llm-deepseek` section for the DeepSeek official route, the `llm-pi-ai`
+  providers table for custom and other routes) and probes the DeepSeek-style
+  `/user/balance` endpoint, falling back to the OpenAI-style
+  `/v1/dashboard/billing/credit_grants` billing endpoint. Providers with no
+  balance endpoint report `no-balance-endpoint` and the seat shows a dash.
+- The client passes the selected provider (`?provider=<route>`) so the seat
+  always reflects the active model's account.
+
 ## [0.1.2] — 2026-08-19
 
 - Fix: the balance text no longer stays visible when the selected model is
