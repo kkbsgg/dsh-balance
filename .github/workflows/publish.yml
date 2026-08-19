@@ -16,7 +16,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org
+          # Do NOT set registry-url for OIDC-only publishing: setup-node then
+          # writes a placeholder NODE_AUTH_TOKEN that shadows the OIDC exchange
+          # and surfaces as "404 Not Found - PUT" (npm/cli#8730, #8976).
 
       - name: Install dependencies
         run: npm ci

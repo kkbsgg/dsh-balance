@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kkbsgg/dsh-balance.git"
+    "url": "https://github.com/kkbsgg/dsh-balance.git"
   },
   "keywords": [
     "dsh",
