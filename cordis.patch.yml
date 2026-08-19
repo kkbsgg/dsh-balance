@@ -5,4 +5,4 @@
 # both be active at once (duplicate entry id "balance" is a boot failure).
 - insert:
     - id: balance
-      name: 'dsh-balance'
+      name: '@kkbsgg/dsh-balance'

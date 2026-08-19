@@ -1,5 +1,5 @@
 window.__ModuleLoader__.load({
-	id: "dsh-balance",
+	id: "@kkbsgg/dsh-balance",
 	factory: (require) => {
 		var module = { exports: {} };
 		var exports = module.exports;
@@ -125,8 +125,8 @@ window.__ModuleLoader__.load({
 		/** Install and remove the balance seat styles. */
 		function installStyles() {
 			const style = document.createElement("style");
-			style.dataset.plugin = "dsh-balance";
-			style.dataset.pluginCss = "dsh-balance/balance-seat";
+			style.dataset.plugin = "@kkbsgg/dsh-balance";
+			style.dataset.pluginCss = "@kkbsgg/dsh-balance/balance-seat";
 			style.textContent = STYLES;
 			document.head.appendChild(style);
 			return () => {
@@ -134,7 +134,7 @@ window.__ModuleLoader__.load({
 			};
 		}
 		/** Cordis plugin name. */
-		const name = "dsh-balance";
+		const name = "@kkbsgg/dsh-balance";
 		/** Services required before the contribution can register. */
 		const inject = ["slots"];
 		/**

@@ -13,3 +13,4 @@ All notable changes to this project are documented in this file.
   every 60s, and refreshes on click.
 - GitHub Actions CI and README badges.
 - `dsh.bundle` manifest for DSH plugin market installability.
+- Published on npm as `@kkbsgg/dsh-balance`.

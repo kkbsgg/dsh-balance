@@ -1,5 +1,5 @@
 {
-  "name": "dsh-balance",
+  "name": "@kkbsgg/dsh-balance",
   "version": "0.1.0",
   "description": "Shows the DeepSeek account balance next to the composer model seat once a model and reasoning effort are selected.",
   "type": "module",
@@ -24,6 +24,20 @@
     "README.md"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkbsgg/dsh-balance.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "balance",
+    "deepseek-harness"
+  ],
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1",
     "@deepseek-ai/dsh-credentials": "^0.1.0-rc.7",

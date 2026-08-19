@@ -33,7 +33,7 @@ jobs:
 
       - name: Host module exports
         run: |
-          node --input-type=module -e "import('./lib/index.js').then((m) => { if (typeof m.apply !== 'function' || !Array.isArray(m.inject) || m.name !== 'dsh-balance') process.exit(1); console.log('host module exports OK') })"
+          node --input-type=module -e "import('./lib/index.js').then((m) => { if (typeof m.apply !== 'function' || !Array.isArray(m.inject) || m.name !== '@kkbsgg/dsh-balance') process.exit(1); console.log('host module exports OK') })"
 
       - name: Client bundle id matches package name
         run: |

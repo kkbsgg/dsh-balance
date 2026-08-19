@@ -31,7 +31,7 @@ The package declares a `dsh.bundle` manifest, so it installs through the
 standard plugin command once the repo is resolvable:
 
 ```sh
-dsh plugin add kkbsgg/dsh-balance
+dsh plugin add @kkbsgg/dsh-balance
 ```
 
 ### Manual (packaged DSH Desktop)
@@ -59,7 +59,7 @@ junction, so the profile loader resolves it exactly like the in-box plugins.
 ## Repository layout
 
 ```
-dsh-balance/
+dsh-balance/  (@kkbsgg/dsh-balance)
 ├── lib/index.js           # host half (Cordis plugin + balance route)
 ├── client/client.js       # client half (web client plugin bundle)
 ├── test/smoke.test.mjs    # host-half smoke test (run: node test/smoke.test.mjs)
